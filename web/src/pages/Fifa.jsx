@@ -32,8 +32,8 @@ export default function Fifa() {
           Real tournament data — {meta.playerCount.toLocaleString()} named squad players across {meta.teams.length} teams,
           {' '}{meta.playersFeatured.toLocaleString()} of whom actually featured. Verified against live World Cup reporting
           (goals, own goals and assist leaders all match published figures exactly). Six deep-dive views beyond the obvious
-          results and top-scorer tables: tournament shape, team economics, position archetypes, scouting angles, squad
-          rotation, and a dedicated goalkeeper breakdown.
+          results and top-scorer tables: tournament shape, position archetypes, scouting angles, squad rotation, and a
+          dedicated goalkeeper breakdown.
         </p>
       </div>
 

@@ -9,7 +9,7 @@ const projects = [
     to: '/fifa-world-cup',
     title: 'FIFA World Cup 2026 — Player Performance',
     description:
-      'Real tournament data, verified against live reporting. A six-tab deep dive beyond the obvious results and top-scorer tables: team economics, position archetypes, scouting angles, squad rotation, and a dedicated goalkeeper breakdown — with a football-pitch visual for squad and position views.',
+      'Real tournament data, verified against live reporting. A six-tab deep dive beyond the obvious results and top-scorer tables: position archetypes, scouting angles, squad rotation, a dedicated goalkeeper breakdown, and a per-team analysis that explains why each squad finished the way it did.',
     stats: [
       `${fifaMeta.playersFeatured.toLocaleString()} players featured`,
       `${fifaMeta.teams.length} teams`,
