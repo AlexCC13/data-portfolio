@@ -122,7 +122,10 @@ export default function PlayersTab({ roster }) {
               <CartesianGrid strokeDasharray="3 3" stroke="#232939" />
               <XAxis dataKey="ageBand" stroke="#5a6272" fontSize={11} />
               <YAxis stroke="#5a6272" fontSize={11} />
-              <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12 }} />
+              <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, color: 'var(--text)' }}
+                  labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
+                  itemStyle={{ color: 'var(--text-dim)' }}
+                />
               <Bar dataKey="avgPlusMinusPer90" fill="#5b8cff" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>

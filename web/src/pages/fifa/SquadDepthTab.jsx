@@ -33,7 +33,10 @@ export default function SquadDepthTab({ roster, teamSummary }) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#232939" horizontal={false} />
                 <XAxis type="number" domain={[0, 100]} stroke="#5a6272" fontSize={11} />
                 <YAxis type="category" dataKey="team" stroke="#8b93a7" fontSize={11} width={90} />
-                <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12 }} />
+                <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, color: 'var(--text)' }}
+                  labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
+                  itemStyle={{ color: 'var(--text-dim)' }}
+                />
                 <Bar dataKey="coreStartersShare" fill="#f87171" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -45,7 +48,10 @@ export default function SquadDepthTab({ roster, teamSummary }) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#232939" horizontal={false} />
                 <XAxis type="number" domain={[0, 100]} stroke="#5a6272" fontSize={11} />
                 <YAxis type="category" dataKey="team" stroke="#8b93a7" fontSize={11} width={90} />
-                <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12 }} />
+                <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, color: 'var(--text)' }}
+                  labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
+                  itemStyle={{ color: 'var(--text-dim)' }}
+                />
                 <Bar dataKey="coreStartersShare" fill="#38d9c4" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>

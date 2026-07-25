@@ -1,33 +1,10 @@
 import { Link } from 'react-router-dom'
-import rankingsMeta from '../data/rankings/meta.json'
-import skillsMeta from '../data/skills/meta.json'
 import fifaMeta from '../data/fifa/meta.json'
 
+// Global Country Rankings and Tech Skill Scarcity Index are hidden from the
+// portfolio listing (still deployed and reachable at their routes, just not
+// surfaced on Home) — ask before removing them outright if that changes.
 const projects = [
-  {
-    to: '/country-rankings',
-    title: 'Global Country Rankings, 2000–2026',
-    description:
-      'Happiness, human development, GDP, life expectancy, corruption, democracy, press freedom, peace and environmental performance for 217 countries across 27 years.',
-    stats: [
-      `${rankingsMeta.countries.length} countries`,
-      `${rankingsMeta.years[0]}–${rankingsMeta.years[rankingsMeta.years.length - 1]}`,
-      `${rankingsMeta.rowCount.toLocaleString()} rows`,
-    ],
-    tags: ['Kaggle', 'Time series', 'Geopolitics'],
-  },
-  {
-    to: '/skill-scarcity',
-    title: 'Tech Skill Scarcity Index',
-    description:
-      'Which tech skills are hardest to hire for right now — demand share, time-to-fill, salary premiums and repost rates across AI, data, devops, engineering, product and security roles.',
-    stats: [
-      `${skillsMeta.skills.length} skills`,
-      `${skillsMeta.snapshotDates.length} weekly snapshots`,
-      `${skillsMeta.rowCount.toLocaleString()} rows`,
-    ],
-    tags: ['Kaggle', 'Labor market', 'Job postings'],
-  },
   {
     to: '/fifa-world-cup',
     title: 'FIFA World Cup 2026 — Player Performance',

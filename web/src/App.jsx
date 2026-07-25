@@ -6,7 +6,7 @@ function App() {
       <header style={{ borderBottom: '1px solid var(--border)', position: 'sticky', top: 0, background: 'rgba(11,14,20,0.85)', backdropFilter: 'blur(8px)', zIndex: 10 }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60 }}>
           <Link to="/" style={{ fontWeight: 700, fontSize: 15, letterSpacing: '-0.01em' }}>
-            Alexis Slagk <span style={{ color: 'var(--text-faint)', fontWeight: 400 }}>/ Data Portfolio</span>
+            Alexis Lagkaditis <span style={{ color: 'var(--text-faint)', fontWeight: 400 }}>/ Data Portfolio</span>
           </Link>
           <a href="https://github.com/AlexCC13/data-portfolio" target="_blank" rel="noreferrer" style={{ fontSize: 13, color: 'var(--text-dim)' }}>
             GitHub ↗

@@ -47,7 +47,10 @@ export default function PositionsTab({ positionProfiles }) {
                   <Radar key={pos} name={pos} dataKey={pos} stroke={POSITION_COLORS[pos]} fill={POSITION_COLORS[pos]} fillOpacity={0.15} strokeWidth={2} />
                 ))}
                 <Legend wrapperStyle={{ fontSize: 11 }} />
-                <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12 }} />
+                <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, color: 'var(--text)' }}
+                  labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
+                  itemStyle={{ color: 'var(--text-dim)' }}
+                />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -58,7 +61,10 @@ export default function PositionsTab({ positionProfiles }) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#232939" />
                 <XAxis dataKey="position" stroke="#5a6272" fontSize={11} />
                 <YAxis stroke="#5a6272" fontSize={11} />
-                <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12 }} />
+                <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, color: 'var(--text)' }}
+                  labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
+                  itemStyle={{ color: 'var(--text-dim)' }}
+                />
                 <Bar dataKey="shots_on_target_pct" radius={[4, 4, 0, 0]} fill="#5b8cff" />
               </BarChart>
             </ResponsiveContainer>
