@@ -294,7 +294,13 @@ export function impactSubs(roster, minSubApps = 3, n = 10) {
     .slice(0, n)
 }
 
-export function ageImpactCurve(roster, minGames = 3) {
+// A games-only floor lets a bracket be dominated by low-minutes players —
+// e.g. 17-20 initially looked like it had the tournament's biggest per-90
+// impact, but that group also had the fewest minutes per player of any
+// bracket (median 2.4 "nineties" vs. 3.0 for the rest); requiring at least
+// 4 full nineties collapses it from 25 players to 5 and the ranking flips
+// to the conventional prime-years pattern. Both floors are applied here.
+export function ageImpactCurve(roster, minGames = 3, minMinutes90 = 4) {
   const buckets = [
     { label: '17-20', min: 17, max: 20 },
     { label: '21-23', min: 21, max: 23 },
@@ -303,7 +309,7 @@ export function ageImpactCurve(roster, minGames = 3) {
     { label: '30-32', min: 30, max: 32 },
     { label: '33+', min: 33, max: 99 },
   ]
-  const eligible = roster.filter((p) => !p.did_not_play && p.games >= minGames)
+  const eligible = roster.filter((p) => !p.did_not_play && p.games >= minGames && p.minutes_90s >= minMinutes90)
   return buckets.map((b) => {
     const rows = eligible.filter((p) => p.age >= b.min && p.age <= b.max)
     return {

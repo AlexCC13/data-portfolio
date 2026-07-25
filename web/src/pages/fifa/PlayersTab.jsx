@@ -116,17 +116,25 @@ export default function PlayersTab({ roster }) {
         />
       </Section>
 
-      <Section title="On-pitch impact by age" subtitle="Average +/- per 90, min. 3 matches played">
+      <Section title="On-pitch impact by age" subtitle="Average +/- per 90, min. 3 matches and 4 full nineties played (excludes low-minutes cameos that would otherwise skew small brackets)">
         <div className="card">
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={ageCurve}>
               <CartesianGrid strokeDasharray="3 3" stroke="#232939" />
               <XAxis dataKey="ageBand" stroke="#5a6272" fontSize={11} />
               <YAxis stroke="#5a6272" fontSize={11} />
-              <Tooltip contentStyle={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, color: 'var(--text)' }}
-                  labelStyle={{ color: 'var(--text)', fontWeight: 600, marginBottom: 4 }}
-                  itemStyle={{ color: 'var(--text-dim)' }}
-                />
+              <Tooltip
+                content={({ active, payload }) => {
+                  if (!active || !payload?.length) return null
+                  const d = payload[0].payload
+                  return (
+                    <div style={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, padding: 8, borderRadius: 6, color: 'var(--text)' }}>
+                      <div style={{ fontWeight: 600, marginBottom: 4 }}>{d.ageBand}</div>
+                      <div style={{ color: 'var(--text-dim)' }}>{d.avgPlusMinusPer90} avg +/-/90 · {d.count} players</div>
+                    </div>
+                  )
+                }}
+              />
               <Bar dataKey="avgPlusMinusPer90" fill="#5b8cff" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
