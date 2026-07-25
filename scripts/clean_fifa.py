@@ -124,12 +124,23 @@ def main() -> None:
             "shotsOnTargetPct": round(float(team_played["shots_on_target_pct"].mean()), 1) if len(team_played) else 0,
             "yellowCards": int(team_played["cards_yellow"].sum()),
             "redCards": int(team_played["cards_red"].sum()),
-            "cleanSheets": int(team_gk["gk_clean_sheets"].sum()),
+            # Only from starting keepers: a substitute keeper's clean personal
+            # segment within an otherwise-conceding match still earns its own
+            # gk_clean_sheets credit in the source data, which double-counts
+            # that match if summed across every keeper who touched it.
+            "cleanSheets": int(team_gk[team_gk["gk_games_starts"] > 0]["gk_clean_sheets"].sum()),
             "squadSize": int(players.shape[0]),
             "playersUsed": int(team_played.shape[0]),
             "avgPlusMinus": round(float(team_played["plus_minus"].mean()), 2) if len(team_played) else 0,
         })
     team_summary = pd.DataFrame(team_rows).sort_values("goalsFor", ascending=False).reset_index(drop=True)
+
+    # Sanity check: a clean sheet can never exceed matches played, and if a
+    # team conceded at all, clean sheets must be strictly fewer than matches
+    # played. Catches goalkeeper-stat double-counting like the Mexico case
+    # this check was added for (see CLAUDE.md).
+    impossible = team_summary[team_summary["cleanSheets"] > team_summary["matchesPlayed"]]
+    assert impossible.empty, f"Clean sheets exceed matches played for: {impossible['team'].tolist()}"
 
     # --- position_profiles.json -----------------------------------------
     profile_cols = ["goals_per90", "assists_per90", "shots_per90", "shots_on_target_pct"] + \
