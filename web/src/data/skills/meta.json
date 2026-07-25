@@ -1,0 +1,2429 @@
+{
+  "categories": [
+    "ai",
+    "data",
+    "devops",
+    "engineering",
+    "product",
+    "security"
+  ],
+  "skills": [
+    "A/B Testing",
+    "AI Agents",
+    "AI Coding Tools",
+    "AWS",
+    "AWS Security",
+    "Agile / Scrum",
+    "Airbyte",
+    "Airflow",
+    "Alteryx",
+    "Amplitude",
+    "Angular",
+    "Ansible",
+    "Apache Iceberg",
+    "ArgoCD",
+    "Azure",
+    "Bash",
+    "BigQuery",
+    "Burp Suite",
+    "C#",
+    "C++",
+    "CI/CD",
+    "CISSP",
+    "Cassandra",
+    "ClickHouse",
+    "Dagster",
+    "Data Modeling",
+    "Data Observability",
+    "Data Pipeline",
+    "Data Visualization",
+    "Databricks",
+    "Datadog",
+    "Deep Learning",
+    "Django",
+    "Docker",
+    "Dynamics 365",
+    "DynamoDB",
+    "ETL",
+    "Elasticsearch",
+    "Excel",
+    "FastAPI",
+    "Figma",
+    "Fine-tuning",
+    "Firebase",
+    "Fivetran",
+    "Flask",
+    "Flink",
+    "GCP",
+    "Git",
+    "Go",
+    "Google Analytics",
+    "Grafana",
+    "GraphQL",
+    "Helm",
+    "Hugging Face",
+    "Incident Response",
+    "Informatica",
+    "Java",
+    "JavaScript",
+    "Jira",
+    "Jupyter",
+    "Kafka",
+    "Kotlin",
+    "Kubernetes",
+    "LLM APIs",
+    "LLMs / GenAI",
+    "LangChain",
+    "Linear",
+    "Linux",
+    "Looker",
+    "MCP",
+    "MLflow",
+    "Machine Learning",
+    "Metabase",
+    "Microservices",
+    "Microsoft Fabric",
+    "Mixpanel",
+    "MongoDB",
+    "MuleSoft",
+    "MySQL",
+    "NLP",
+    "NetSuite",
+    "Next.js",
+    "Node.js",
+    "NumPy",
+    "OWASP",
+    "Oracle",
+    "PHP",
+    "Pandas",
+    "Penetration Testing",
+    "Polars",
+    "PostgreSQL",
+    "Power BI",
+    "Prefect",
+    "Prometheus",
+    "Prompt Engineering",
+    "Prototyping",
+    "Pulumi",
+    "PyTorch",
+    "Python",
+    "RAG",
+    "REST API",
+    "React",
+    "Redis",
+    "Redshift",
+    "Ruby",
+    "Rust",
+    "SAP",
+    "SAS",
+    "SIEM",
+    "SOC 2",
+    "SQL",
+    "SSIS",
+    "SageMaker",
+    "Salesforce",
+    "Scala",
+    "Segment",
+    "ServiceNow",
+    "Snowflake",
+    "Spark",
+    "Spring",
+    "Stakeholder Mgmt",
+    "Statistical Analysis",
+    "Superset",
+    "Svelte",
+    "Swift",
+    "System Design",
+    "Tableau",
+    "TensorFlow",
+    "Terraform",
+    "Trino",
+    "TypeScript",
+    "User Research",
+    "Vector Databases",
+    "Vue",
+    "Workday",
+    "Workflow Automation",
+    "XGBoost",
+    "Zero Trust",
+    "dbt",
+    "scikit-learn",
+    "vLLM"
+  ],
+  "skillCategoryPairs": [
+    {
+      "skill_name": "A/B Testing",
+      "category": "ai"
+    },
+    {
+      "skill_name": "A/B Testing",
+      "category": "data"
+    },
+    {
+      "skill_name": "A/B Testing",
+      "category": "devops"
+    },
+    {
+      "skill_name": "A/B Testing",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "A/B Testing",
+      "category": "product"
+    },
+    {
+      "skill_name": "A/B Testing",
+      "category": "security"
+    },
+    {
+      "skill_name": "AI Agents",
+      "category": "ai"
+    },
+    {
+      "skill_name": "AI Agents",
+      "category": "data"
+    },
+    {
+      "skill_name": "AI Agents",
+      "category": "devops"
+    },
+    {
+      "skill_name": "AI Agents",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "AI Agents",
+      "category": "product"
+    },
+    {
+      "skill_name": "AI Agents",
+      "category": "security"
+    },
+    {
+      "skill_name": "AI Coding Tools",
+      "category": "ai"
+    },
+    {
+      "skill_name": "AI Coding Tools",
+      "category": "data"
+    },
+    {
+      "skill_name": "AI Coding Tools",
+      "category": "devops"
+    },
+    {
+      "skill_name": "AI Coding Tools",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "AI Coding Tools",
+      "category": "product"
+    },
+    {
+      "skill_name": "AI Coding Tools",
+      "category": "security"
+    },
+    {
+      "skill_name": "AWS",
+      "category": "ai"
+    },
+    {
+      "skill_name": "AWS",
+      "category": "data"
+    },
+    {
+      "skill_name": "AWS",
+      "category": "devops"
+    },
+    {
+      "skill_name": "AWS",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "AWS",
+      "category": "product"
+    },
+    {
+      "skill_name": "AWS",
+      "category": "security"
+    },
+    {
+      "skill_name": "AWS Security",
+      "category": "ai"
+    },
+    {
+      "skill_name": "AWS Security",
+      "category": "data"
+    },
+    {
+      "skill_name": "AWS Security",
+      "category": "devops"
+    },
+    {
+      "skill_name": "AWS Security",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "AWS Security",
+      "category": "product"
+    },
+    {
+      "skill_name": "AWS Security",
+      "category": "security"
+    },
+    {
+      "skill_name": "Agile / Scrum",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Agile / Scrum",
+      "category": "data"
+    },
+    {
+      "skill_name": "Agile / Scrum",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Agile / Scrum",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Agile / Scrum",
+      "category": "product"
+    },
+    {
+      "skill_name": "Agile / Scrum",
+      "category": "security"
+    },
+    {
+      "skill_name": "Airbyte",
+      "category": "data"
+    },
+    {
+      "skill_name": "Airbyte",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Airflow",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Airflow",
+      "category": "data"
+    },
+    {
+      "skill_name": "Airflow",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Airflow",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Airflow",
+      "category": "product"
+    },
+    {
+      "skill_name": "Alteryx",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Amplitude",
+      "category": "data"
+    },
+    {
+      "skill_name": "Amplitude",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Amplitude",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Amplitude",
+      "category": "product"
+    },
+    {
+      "skill_name": "Angular",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Angular",
+      "category": "data"
+    },
+    {
+      "skill_name": "Angular",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Angular",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Angular",
+      "category": "product"
+    },
+    {
+      "skill_name": "Ansible",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Ansible",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Ansible",
+      "category": "security"
+    },
+    {
+      "skill_name": "Apache Iceberg",
+      "category": "data"
+    },
+    {
+      "skill_name": "Apache Iceberg",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "ArgoCD",
+      "category": "ai"
+    },
+    {
+      "skill_name": "ArgoCD",
+      "category": "devops"
+    },
+    {
+      "skill_name": "ArgoCD",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Azure",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Azure",
+      "category": "data"
+    },
+    {
+      "skill_name": "Azure",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Azure",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Azure",
+      "category": "product"
+    },
+    {
+      "skill_name": "Azure",
+      "category": "security"
+    },
+    {
+      "skill_name": "Bash",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Bash",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Bash",
+      "category": "security"
+    },
+    {
+      "skill_name": "BigQuery",
+      "category": "ai"
+    },
+    {
+      "skill_name": "BigQuery",
+      "category": "data"
+    },
+    {
+      "skill_name": "BigQuery",
+      "category": "devops"
+    },
+    {
+      "skill_name": "BigQuery",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Burp Suite",
+      "category": "security"
+    },
+    {
+      "skill_name": "C#",
+      "category": "ai"
+    },
+    {
+      "skill_name": "C#",
+      "category": "data"
+    },
+    {
+      "skill_name": "C#",
+      "category": "devops"
+    },
+    {
+      "skill_name": "C#",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "C#",
+      "category": "product"
+    },
+    {
+      "skill_name": "C#",
+      "category": "security"
+    },
+    {
+      "skill_name": "C++",
+      "category": "ai"
+    },
+    {
+      "skill_name": "C++",
+      "category": "data"
+    },
+    {
+      "skill_name": "C++",
+      "category": "devops"
+    },
+    {
+      "skill_name": "C++",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "C++",
+      "category": "security"
+    },
+    {
+      "skill_name": "CI/CD",
+      "category": "ai"
+    },
+    {
+      "skill_name": "CI/CD",
+      "category": "data"
+    },
+    {
+      "skill_name": "CI/CD",
+      "category": "devops"
+    },
+    {
+      "skill_name": "CI/CD",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "CI/CD",
+      "category": "product"
+    },
+    {
+      "skill_name": "CI/CD",
+      "category": "security"
+    },
+    {
+      "skill_name": "CISSP",
+      "category": "security"
+    },
+    {
+      "skill_name": "Cassandra",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Cassandra",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "ClickHouse",
+      "category": "data"
+    },
+    {
+      "skill_name": "ClickHouse",
+      "category": "devops"
+    },
+    {
+      "skill_name": "ClickHouse",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Dagster",
+      "category": "data"
+    },
+    {
+      "skill_name": "Dagster",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Dagster",
+      "category": "product"
+    },
+    {
+      "skill_name": "Data Modeling",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Data Modeling",
+      "category": "data"
+    },
+    {
+      "skill_name": "Data Modeling",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Data Modeling",
+      "category": "product"
+    },
+    {
+      "skill_name": "Data Observability",
+      "category": "data"
+    },
+    {
+      "skill_name": "Data Observability",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Data Observability",
+      "category": "product"
+    },
+    {
+      "skill_name": "Data Pipeline",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Data Pipeline",
+      "category": "data"
+    },
+    {
+      "skill_name": "Data Pipeline",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Data Pipeline",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Data Pipeline",
+      "category": "product"
+    },
+    {
+      "skill_name": "Data Visualization",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Data Visualization",
+      "category": "data"
+    },
+    {
+      "skill_name": "Data Visualization",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Data Visualization",
+      "category": "product"
+    },
+    {
+      "skill_name": "Databricks",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Databricks",
+      "category": "data"
+    },
+    {
+      "skill_name": "Databricks",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Databricks",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Databricks",
+      "category": "product"
+    },
+    {
+      "skill_name": "Databricks",
+      "category": "security"
+    },
+    {
+      "skill_name": "Datadog",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Datadog",
+      "category": "data"
+    },
+    {
+      "skill_name": "Datadog",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Datadog",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Datadog",
+      "category": "product"
+    },
+    {
+      "skill_name": "Datadog",
+      "category": "security"
+    },
+    {
+      "skill_name": "Deep Learning",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Deep Learning",
+      "category": "data"
+    },
+    {
+      "skill_name": "Deep Learning",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Deep Learning",
+      "category": "product"
+    },
+    {
+      "skill_name": "Django",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Django",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Django",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Docker",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Docker",
+      "category": "data"
+    },
+    {
+      "skill_name": "Docker",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Docker",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Docker",
+      "category": "security"
+    },
+    {
+      "skill_name": "Dynamics 365",
+      "category": "data"
+    },
+    {
+      "skill_name": "DynamoDB",
+      "category": "ai"
+    },
+    {
+      "skill_name": "DynamoDB",
+      "category": "data"
+    },
+    {
+      "skill_name": "DynamoDB",
+      "category": "devops"
+    },
+    {
+      "skill_name": "DynamoDB",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "DynamoDB",
+      "category": "security"
+    },
+    {
+      "skill_name": "ETL",
+      "category": "ai"
+    },
+    {
+      "skill_name": "ETL",
+      "category": "data"
+    },
+    {
+      "skill_name": "ETL",
+      "category": "devops"
+    },
+    {
+      "skill_name": "ETL",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "ETL",
+      "category": "product"
+    },
+    {
+      "skill_name": "Elasticsearch",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Elasticsearch",
+      "category": "data"
+    },
+    {
+      "skill_name": "Elasticsearch",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Elasticsearch",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Elasticsearch",
+      "category": "product"
+    },
+    {
+      "skill_name": "Elasticsearch",
+      "category": "security"
+    },
+    {
+      "skill_name": "Excel",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Excel",
+      "category": "data"
+    },
+    {
+      "skill_name": "Excel",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Excel",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Excel",
+      "category": "product"
+    },
+    {
+      "skill_name": "Excel",
+      "category": "security"
+    },
+    {
+      "skill_name": "FastAPI",
+      "category": "ai"
+    },
+    {
+      "skill_name": "FastAPI",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Figma",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Figma",
+      "category": "data"
+    },
+    {
+      "skill_name": "Figma",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Figma",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Figma",
+      "category": "product"
+    },
+    {
+      "skill_name": "Fine-tuning",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Fine-tuning",
+      "category": "data"
+    },
+    {
+      "skill_name": "Fine-tuning",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Fine-tuning",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Fine-tuning",
+      "category": "product"
+    },
+    {
+      "skill_name": "Firebase",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Fivetran",
+      "category": "data"
+    },
+    {
+      "skill_name": "Fivetran",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Fivetran",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Fivetran",
+      "category": "product"
+    },
+    {
+      "skill_name": "Flask",
+      "category": "data"
+    },
+    {
+      "skill_name": "Flask",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Flask",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Flink",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Flink",
+      "category": "data"
+    },
+    {
+      "skill_name": "Flink",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Flink",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "GCP",
+      "category": "ai"
+    },
+    {
+      "skill_name": "GCP",
+      "category": "data"
+    },
+    {
+      "skill_name": "GCP",
+      "category": "devops"
+    },
+    {
+      "skill_name": "GCP",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "GCP",
+      "category": "product"
+    },
+    {
+      "skill_name": "GCP",
+      "category": "security"
+    },
+    {
+      "skill_name": "Git",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Git",
+      "category": "data"
+    },
+    {
+      "skill_name": "Git",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Git",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Git",
+      "category": "product"
+    },
+    {
+      "skill_name": "Git",
+      "category": "security"
+    },
+    {
+      "skill_name": "Go",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Go",
+      "category": "data"
+    },
+    {
+      "skill_name": "Go",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Go",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Go",
+      "category": "security"
+    },
+    {
+      "skill_name": "Google Analytics",
+      "category": "data"
+    },
+    {
+      "skill_name": "Grafana",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Grafana",
+      "category": "data"
+    },
+    {
+      "skill_name": "Grafana",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Grafana",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "GraphQL",
+      "category": "ai"
+    },
+    {
+      "skill_name": "GraphQL",
+      "category": "data"
+    },
+    {
+      "skill_name": "GraphQL",
+      "category": "devops"
+    },
+    {
+      "skill_name": "GraphQL",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Helm",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Helm",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Hugging Face",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Hugging Face",
+      "category": "data"
+    },
+    {
+      "skill_name": "Hugging Face",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Hugging Face",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Hugging Face",
+      "category": "product"
+    },
+    {
+      "skill_name": "Incident Response",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Incident Response",
+      "category": "data"
+    },
+    {
+      "skill_name": "Incident Response",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Incident Response",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Incident Response",
+      "category": "security"
+    },
+    {
+      "skill_name": "Informatica",
+      "category": "data"
+    },
+    {
+      "skill_name": "Informatica",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Informatica",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Java",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Java",
+      "category": "data"
+    },
+    {
+      "skill_name": "Java",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Java",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Java",
+      "category": "product"
+    },
+    {
+      "skill_name": "Java",
+      "category": "security"
+    },
+    {
+      "skill_name": "JavaScript",
+      "category": "ai"
+    },
+    {
+      "skill_name": "JavaScript",
+      "category": "data"
+    },
+    {
+      "skill_name": "JavaScript",
+      "category": "devops"
+    },
+    {
+      "skill_name": "JavaScript",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "JavaScript",
+      "category": "product"
+    },
+    {
+      "skill_name": "JavaScript",
+      "category": "security"
+    },
+    {
+      "skill_name": "Jira",
+      "category": "data"
+    },
+    {
+      "skill_name": "Jira",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Jira",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Jira",
+      "category": "product"
+    },
+    {
+      "skill_name": "Jira",
+      "category": "security"
+    },
+    {
+      "skill_name": "Jupyter",
+      "category": "data"
+    },
+    {
+      "skill_name": "Jupyter",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Kafka",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Kafka",
+      "category": "data"
+    },
+    {
+      "skill_name": "Kafka",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Kafka",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Kafka",
+      "category": "product"
+    },
+    {
+      "skill_name": "Kotlin",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Kotlin",
+      "category": "data"
+    },
+    {
+      "skill_name": "Kotlin",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Kotlin",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Kubernetes",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Kubernetes",
+      "category": "data"
+    },
+    {
+      "skill_name": "Kubernetes",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Kubernetes",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Kubernetes",
+      "category": "product"
+    },
+    {
+      "skill_name": "Kubernetes",
+      "category": "security"
+    },
+    {
+      "skill_name": "LLM APIs",
+      "category": "ai"
+    },
+    {
+      "skill_name": "LLM APIs",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "LLMs / GenAI",
+      "category": "ai"
+    },
+    {
+      "skill_name": "LLMs / GenAI",
+      "category": "data"
+    },
+    {
+      "skill_name": "LLMs / GenAI",
+      "category": "devops"
+    },
+    {
+      "skill_name": "LLMs / GenAI",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "LLMs / GenAI",
+      "category": "product"
+    },
+    {
+      "skill_name": "LLMs / GenAI",
+      "category": "security"
+    },
+    {
+      "skill_name": "LangChain",
+      "category": "ai"
+    },
+    {
+      "skill_name": "LangChain",
+      "category": "data"
+    },
+    {
+      "skill_name": "LangChain",
+      "category": "devops"
+    },
+    {
+      "skill_name": "LangChain",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "LangChain",
+      "category": "product"
+    },
+    {
+      "skill_name": "Linear",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Linear",
+      "category": "data"
+    },
+    {
+      "skill_name": "Linear",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Linear",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Linear",
+      "category": "product"
+    },
+    {
+      "skill_name": "Linux",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Linux",
+      "category": "data"
+    },
+    {
+      "skill_name": "Linux",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Linux",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Linux",
+      "category": "security"
+    },
+    {
+      "skill_name": "Looker",
+      "category": "data"
+    },
+    {
+      "skill_name": "Looker",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Looker",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Looker",
+      "category": "product"
+    },
+    {
+      "skill_name": "Looker",
+      "category": "security"
+    },
+    {
+      "skill_name": "MCP",
+      "category": "ai"
+    },
+    {
+      "skill_name": "MCP",
+      "category": "data"
+    },
+    {
+      "skill_name": "MCP",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "MCP",
+      "category": "product"
+    },
+    {
+      "skill_name": "MCP",
+      "category": "security"
+    },
+    {
+      "skill_name": "MLflow",
+      "category": "ai"
+    },
+    {
+      "skill_name": "MLflow",
+      "category": "data"
+    },
+    {
+      "skill_name": "MLflow",
+      "category": "devops"
+    },
+    {
+      "skill_name": "MLflow",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "MLflow",
+      "category": "product"
+    },
+    {
+      "skill_name": "MLflow",
+      "category": "security"
+    },
+    {
+      "skill_name": "Machine Learning",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Machine Learning",
+      "category": "data"
+    },
+    {
+      "skill_name": "Machine Learning",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Machine Learning",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Machine Learning",
+      "category": "product"
+    },
+    {
+      "skill_name": "Machine Learning",
+      "category": "security"
+    },
+    {
+      "skill_name": "Metabase",
+      "category": "data"
+    },
+    {
+      "skill_name": "Microservices",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Microservices",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Microsoft Fabric",
+      "category": "data"
+    },
+    {
+      "skill_name": "Mixpanel",
+      "category": "data"
+    },
+    {
+      "skill_name": "Mixpanel",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Mixpanel",
+      "category": "product"
+    },
+    {
+      "skill_name": "MongoDB",
+      "category": "ai"
+    },
+    {
+      "skill_name": "MongoDB",
+      "category": "data"
+    },
+    {
+      "skill_name": "MongoDB",
+      "category": "devops"
+    },
+    {
+      "skill_name": "MongoDB",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "MongoDB",
+      "category": "product"
+    },
+    {
+      "skill_name": "MongoDB",
+      "category": "security"
+    },
+    {
+      "skill_name": "MuleSoft",
+      "category": "devops"
+    },
+    {
+      "skill_name": "MySQL",
+      "category": "data"
+    },
+    {
+      "skill_name": "MySQL",
+      "category": "devops"
+    },
+    {
+      "skill_name": "MySQL",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "NLP",
+      "category": "ai"
+    },
+    {
+      "skill_name": "NLP",
+      "category": "data"
+    },
+    {
+      "skill_name": "NLP",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "NLP",
+      "category": "product"
+    },
+    {
+      "skill_name": "NetSuite",
+      "category": "data"
+    },
+    {
+      "skill_name": "NetSuite",
+      "category": "devops"
+    },
+    {
+      "skill_name": "NetSuite",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "NetSuite",
+      "category": "product"
+    },
+    {
+      "skill_name": "Next.js",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Next.js",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Next.js",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Next.js",
+      "category": "product"
+    },
+    {
+      "skill_name": "Next.js",
+      "category": "security"
+    },
+    {
+      "skill_name": "Node.js",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Node.js",
+      "category": "data"
+    },
+    {
+      "skill_name": "Node.js",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Node.js",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Node.js",
+      "category": "product"
+    },
+    {
+      "skill_name": "Node.js",
+      "category": "security"
+    },
+    {
+      "skill_name": "NumPy",
+      "category": "ai"
+    },
+    {
+      "skill_name": "NumPy",
+      "category": "data"
+    },
+    {
+      "skill_name": "NumPy",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "OWASP",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "OWASP",
+      "category": "security"
+    },
+    {
+      "skill_name": "Oracle",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Oracle",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "PHP",
+      "category": "devops"
+    },
+    {
+      "skill_name": "PHP",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Pandas",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Pandas",
+      "category": "data"
+    },
+    {
+      "skill_name": "Pandas",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Penetration Testing",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Penetration Testing",
+      "category": "security"
+    },
+    {
+      "skill_name": "Polars",
+      "category": "data"
+    },
+    {
+      "skill_name": "PostgreSQL",
+      "category": "ai"
+    },
+    {
+      "skill_name": "PostgreSQL",
+      "category": "data"
+    },
+    {
+      "skill_name": "PostgreSQL",
+      "category": "devops"
+    },
+    {
+      "skill_name": "PostgreSQL",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "PostgreSQL",
+      "category": "product"
+    },
+    {
+      "skill_name": "PostgreSQL",
+      "category": "security"
+    },
+    {
+      "skill_name": "Power BI",
+      "category": "data"
+    },
+    {
+      "skill_name": "Power BI",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Power BI",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Power BI",
+      "category": "product"
+    },
+    {
+      "skill_name": "Prefect",
+      "category": "data"
+    },
+    {
+      "skill_name": "Prefect",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Prefect",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Prometheus",
+      "category": "data"
+    },
+    {
+      "skill_name": "Prometheus",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Prometheus",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Prompt Engineering",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Prompt Engineering",
+      "category": "data"
+    },
+    {
+      "skill_name": "Prompt Engineering",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Prompt Engineering",
+      "category": "product"
+    },
+    {
+      "skill_name": "Prototyping",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Prototyping",
+      "category": "data"
+    },
+    {
+      "skill_name": "Prototyping",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Prototyping",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Prototyping",
+      "category": "product"
+    },
+    {
+      "skill_name": "Prototyping",
+      "category": "security"
+    },
+    {
+      "skill_name": "Pulumi",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Pulumi",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "PyTorch",
+      "category": "ai"
+    },
+    {
+      "skill_name": "PyTorch",
+      "category": "data"
+    },
+    {
+      "skill_name": "PyTorch",
+      "category": "devops"
+    },
+    {
+      "skill_name": "PyTorch",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "PyTorch",
+      "category": "product"
+    },
+    {
+      "skill_name": "Python",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Python",
+      "category": "data"
+    },
+    {
+      "skill_name": "Python",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Python",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Python",
+      "category": "product"
+    },
+    {
+      "skill_name": "Python",
+      "category": "security"
+    },
+    {
+      "skill_name": "RAG",
+      "category": "ai"
+    },
+    {
+      "skill_name": "RAG",
+      "category": "data"
+    },
+    {
+      "skill_name": "RAG",
+      "category": "devops"
+    },
+    {
+      "skill_name": "RAG",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "RAG",
+      "category": "product"
+    },
+    {
+      "skill_name": "REST API",
+      "category": "ai"
+    },
+    {
+      "skill_name": "REST API",
+      "category": "data"
+    },
+    {
+      "skill_name": "REST API",
+      "category": "devops"
+    },
+    {
+      "skill_name": "REST API",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "React",
+      "category": "ai"
+    },
+    {
+      "skill_name": "React",
+      "category": "data"
+    },
+    {
+      "skill_name": "React",
+      "category": "devops"
+    },
+    {
+      "skill_name": "React",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "React",
+      "category": "product"
+    },
+    {
+      "skill_name": "React",
+      "category": "security"
+    },
+    {
+      "skill_name": "Redis",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Redis",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Redis",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Redis",
+      "category": "security"
+    },
+    {
+      "skill_name": "Redshift",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Redshift",
+      "category": "data"
+    },
+    {
+      "skill_name": "Redshift",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Redshift",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Ruby",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Ruby",
+      "category": "data"
+    },
+    {
+      "skill_name": "Ruby",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Ruby",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Ruby",
+      "category": "product"
+    },
+    {
+      "skill_name": "Ruby",
+      "category": "security"
+    },
+    {
+      "skill_name": "Rust",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Rust",
+      "category": "data"
+    },
+    {
+      "skill_name": "Rust",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Rust",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Rust",
+      "category": "product"
+    },
+    {
+      "skill_name": "Rust",
+      "category": "security"
+    },
+    {
+      "skill_name": "SAP",
+      "category": "data"
+    },
+    {
+      "skill_name": "SAS",
+      "category": "data"
+    },
+    {
+      "skill_name": "SIEM",
+      "category": "data"
+    },
+    {
+      "skill_name": "SIEM",
+      "category": "devops"
+    },
+    {
+      "skill_name": "SIEM",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "SIEM",
+      "category": "product"
+    },
+    {
+      "skill_name": "SIEM",
+      "category": "security"
+    },
+    {
+      "skill_name": "SOC 2",
+      "category": "data"
+    },
+    {
+      "skill_name": "SOC 2",
+      "category": "devops"
+    },
+    {
+      "skill_name": "SOC 2",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "SOC 2",
+      "category": "product"
+    },
+    {
+      "skill_name": "SOC 2",
+      "category": "security"
+    },
+    {
+      "skill_name": "SQL",
+      "category": "ai"
+    },
+    {
+      "skill_name": "SQL",
+      "category": "data"
+    },
+    {
+      "skill_name": "SQL",
+      "category": "devops"
+    },
+    {
+      "skill_name": "SQL",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "SQL",
+      "category": "product"
+    },
+    {
+      "skill_name": "SQL",
+      "category": "security"
+    },
+    {
+      "skill_name": "SSIS",
+      "category": "data"
+    },
+    {
+      "skill_name": "SSIS",
+      "category": "devops"
+    },
+    {
+      "skill_name": "SageMaker",
+      "category": "ai"
+    },
+    {
+      "skill_name": "SageMaker",
+      "category": "data"
+    },
+    {
+      "skill_name": "SageMaker",
+      "category": "devops"
+    },
+    {
+      "skill_name": "SageMaker",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Salesforce",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Salesforce",
+      "category": "data"
+    },
+    {
+      "skill_name": "Salesforce",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Salesforce",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Salesforce",
+      "category": "product"
+    },
+    {
+      "skill_name": "Scala",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Scala",
+      "category": "data"
+    },
+    {
+      "skill_name": "Scala",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Scala",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Segment",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Segment",
+      "category": "data"
+    },
+    {
+      "skill_name": "Segment",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Segment",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Segment",
+      "category": "product"
+    },
+    {
+      "skill_name": "Segment",
+      "category": "security"
+    },
+    {
+      "skill_name": "ServiceNow",
+      "category": "ai"
+    },
+    {
+      "skill_name": "ServiceNow",
+      "category": "data"
+    },
+    {
+      "skill_name": "ServiceNow",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Snowflake",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Snowflake",
+      "category": "data"
+    },
+    {
+      "skill_name": "Snowflake",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Snowflake",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Snowflake",
+      "category": "product"
+    },
+    {
+      "skill_name": "Snowflake",
+      "category": "security"
+    },
+    {
+      "skill_name": "Spark",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Spark",
+      "category": "data"
+    },
+    {
+      "skill_name": "Spark",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Spark",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Spark",
+      "category": "product"
+    },
+    {
+      "skill_name": "Spark",
+      "category": "security"
+    },
+    {
+      "skill_name": "Spring",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Spring",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Spring",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Stakeholder Mgmt",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Stakeholder Mgmt",
+      "category": "data"
+    },
+    {
+      "skill_name": "Stakeholder Mgmt",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Stakeholder Mgmt",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Stakeholder Mgmt",
+      "category": "product"
+    },
+    {
+      "skill_name": "Stakeholder Mgmt",
+      "category": "security"
+    },
+    {
+      "skill_name": "Statistical Analysis",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Statistical Analysis",
+      "category": "data"
+    },
+    {
+      "skill_name": "Statistical Analysis",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Statistical Analysis",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Statistical Analysis",
+      "category": "product"
+    },
+    {
+      "skill_name": "Superset",
+      "category": "data"
+    },
+    {
+      "skill_name": "Svelte",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Svelte",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Swift",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Swift",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Swift",
+      "category": "product"
+    },
+    {
+      "skill_name": "Swift",
+      "category": "security"
+    },
+    {
+      "skill_name": "System Design",
+      "category": "ai"
+    },
+    {
+      "skill_name": "System Design",
+      "category": "data"
+    },
+    {
+      "skill_name": "System Design",
+      "category": "devops"
+    },
+    {
+      "skill_name": "System Design",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "System Design",
+      "category": "product"
+    },
+    {
+      "skill_name": "System Design",
+      "category": "security"
+    },
+    {
+      "skill_name": "Tableau",
+      "category": "data"
+    },
+    {
+      "skill_name": "Tableau",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Tableau",
+      "category": "product"
+    },
+    {
+      "skill_name": "Tableau",
+      "category": "security"
+    },
+    {
+      "skill_name": "TensorFlow",
+      "category": "ai"
+    },
+    {
+      "skill_name": "TensorFlow",
+      "category": "data"
+    },
+    {
+      "skill_name": "TensorFlow",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "TensorFlow",
+      "category": "product"
+    },
+    {
+      "skill_name": "TensorFlow",
+      "category": "security"
+    },
+    {
+      "skill_name": "Terraform",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Terraform",
+      "category": "data"
+    },
+    {
+      "skill_name": "Terraform",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Terraform",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Terraform",
+      "category": "security"
+    },
+    {
+      "skill_name": "Trino",
+      "category": "data"
+    },
+    {
+      "skill_name": "Trino",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "TypeScript",
+      "category": "ai"
+    },
+    {
+      "skill_name": "TypeScript",
+      "category": "data"
+    },
+    {
+      "skill_name": "TypeScript",
+      "category": "devops"
+    },
+    {
+      "skill_name": "TypeScript",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "TypeScript",
+      "category": "security"
+    },
+    {
+      "skill_name": "User Research",
+      "category": "data"
+    },
+    {
+      "skill_name": "User Research",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "User Research",
+      "category": "product"
+    },
+    {
+      "skill_name": "Vector Databases",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Vector Databases",
+      "category": "data"
+    },
+    {
+      "skill_name": "Vector Databases",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Vector Databases",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Vue",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Vue",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Vue",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Workday",
+      "category": "ai"
+    },
+    {
+      "skill_name": "Workday",
+      "category": "data"
+    },
+    {
+      "skill_name": "Workday",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Workday",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Workday",
+      "category": "product"
+    },
+    {
+      "skill_name": "Workflow Automation",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "XGBoost",
+      "category": "ai"
+    },
+    {
+      "skill_name": "XGBoost",
+      "category": "data"
+    },
+    {
+      "skill_name": "Zero Trust",
+      "category": "devops"
+    },
+    {
+      "skill_name": "Zero Trust",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "Zero Trust",
+      "category": "security"
+    },
+    {
+      "skill_name": "dbt",
+      "category": "data"
+    },
+    {
+      "skill_name": "dbt",
+      "category": "devops"
+    },
+    {
+      "skill_name": "dbt",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "dbt",
+      "category": "product"
+    },
+    {
+      "skill_name": "scikit-learn",
+      "category": "ai"
+    },
+    {
+      "skill_name": "scikit-learn",
+      "category": "data"
+    },
+    {
+      "skill_name": "scikit-learn",
+      "category": "engineering"
+    },
+    {
+      "skill_name": "vLLM",
+      "category": "ai"
+    },
+    {
+      "skill_name": "vLLM",
+      "category": "engineering"
+    }
+  ],
+  "snapshotDates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-21",
+    "2026-07-22"
+  ],
+  "rowCount": 3438,
+  "missingMedianDaysOpen": 624,
+  "missingSalaryPremium": 742,
+  "lastUpdated": "2026-07-25"
+}
