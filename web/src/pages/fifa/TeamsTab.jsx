@@ -3,27 +3,33 @@ import {
   ResponsiveContainer,
   ScatterChart,
   Scatter,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   ZAxis,
   CartesianGrid,
   Tooltip,
   Cell,
+  LabelList,
 } from 'recharts'
 import Section from '../../components/Section'
 import InsightList from '../../components/InsightList'
-import PitchView from '../../components/PitchView'
-import { teamInsights, squadPitchMarkers, positionLabel } from '../../lib/fifaAnalysis'
+import { teamInsights, teamDimensions, teamTopPerformers, teamNarrative, positionLabel } from '../../lib/fifaAnalysis'
 
-export default function TeamsTab({ teamSummary, roster }) {
-  const [team, setTeam] = useState('France')
-  const [pitchMetric, setPitchMetric] = useState('plus_minus')
-  const [hovered, setHovered] = useState(null)
+function percentileColor(p) {
+  if (p >= 70) return '#4ade80'
+  if (p >= 40) return '#f9c74f'
+  return '#f87171'
+}
+
+export default function TeamsTab({ teamSummary, roster, gkProfiles }) {
+  const [team, setTeam] = useState('Spain')
 
   const insights = useMemo(() => teamInsights(teamSummary), [teamSummary])
-  const teamRoster = useMemo(() => roster.filter((p) => p.team === team), [roster, team])
-  const markers = useMemo(() => squadPitchMarkers(teamRoster, pitchMetric), [teamRoster, pitchMetric])
-  const teamStats = teamSummary.find((t) => t.team === team)
+  const profile = useMemo(() => teamDimensions(teamSummary, team), [teamSummary, team])
+  const topPerformers = useMemo(() => teamTopPerformers(roster, team), [roster, team])
+  const narrative = useMemo(() => teamNarrative(teamSummary, roster, gkProfiles, team), [teamSummary, roster, gkProfiles, team])
 
   return (
     <div>
@@ -58,44 +64,83 @@ export default function TeamsTab({ teamSummary, roster }) {
         </div>
       </Section>
 
-      <Section title="Squad pitch view" subtitle="A team's named squad laid out by position, sized and colored by a chosen metric — dim dots never featured">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 14 }} className="two-col">
-          <div className="card">
-            <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
-              <select value={team} onChange={(e) => setTeam(e.target.value)}>
-                {teamSummary.map((t) => (
-                  <option key={t.team} value={t.team}>{t.team}</option>
-                ))}
-              </select>
-              <select value={pitchMetric} onChange={(e) => setPitchMetric(e.target.value)}>
-                <option value="plus_minus">+/- impact</option>
-                <option value="minutes">Minutes played</option>
-                <option value="goals">Goals</option>
-                <option value="assists">Assists</option>
-              </select>
+      <Section
+        title="Team deep dive"
+        subtitle="How one team stacks up across the field on every dimension the data can measure — e.g. what actually explains a team's run"
+        action={
+          <select value={team} onChange={(e) => setTeam(e.target.value)}>
+            {teamSummary.map((t) => (
+              <option key={t.team} value={t.team}>{t.team}</option>
+            ))}
+          </select>
+        }
+      >
+        {profile && (
+          <>
+            <div style={{ fontSize: 13, color: 'var(--text-dim)', marginBottom: 14 }}>
+              {profile.stats.wins}W–{profile.stats.draws}D–{profile.stats.losses}L across {profile.stats.matchesPlayed} matches ·{' '}
+              {profile.stats.goalsFor}–{profile.stats.goalsAgainst} goals · {profile.stats.playersUsed}/{profile.stats.squadSize} squad used
             </div>
-            {teamStats && (
-              <div style={{ fontSize: 13, color: 'var(--text-dim)', marginBottom: 10 }}>
-                {teamStats.wins}W–{teamStats.draws}D–{teamStats.losses}L · {teamStats.goalsFor}–{teamStats.goalsAgainst} goals · {teamStats.playersUsed}/{teamStats.squadSize} squad used
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 14 }} className="two-col">
+              <div className="card">
+                <div style={{ fontSize: 12, color: 'var(--text-faint)', marginBottom: 8 }}>Percentile vs. all 48 teams</div>
+                <ResponsiveContainer width="100%" height={260}>
+                  <BarChart data={profile.dimensions} layout="vertical" margin={{ left: 10, right: 30 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#232939" horizontal={false} />
+                    <XAxis type="number" domain={[0, 100]} stroke="#5a6272" fontSize={11} />
+                    <YAxis type="category" dataKey="label" stroke="#8b93a7" fontSize={11} width={90} />
+                    <Tooltip
+                      content={({ active, payload }) => {
+                        if (!active || !payload?.length) return null
+                        const d = payload[0].payload
+                        return (
+                          <div style={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, padding: 8, borderRadius: 6 }}>
+                            <div style={{ fontWeight: 600 }}>{d.label}: {d.display}</div>
+                            <div>Better than {d.percentile}% of teams</div>
+                          </div>
+                        )
+                      }}
+                    />
+                    <Bar dataKey="percentile" radius={[0, 4, 4, 0]}>
+                      {profile.dimensions.map((d) => (
+                        <Cell key={d.key} fill={percentileColor(d.percentile)} />
+                      ))}
+                      <LabelList dataKey="display" position="right" fontSize={11} fill="var(--text-dim)" />
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
-            )}
-            {hovered && (
-              <div style={{ fontSize: 13, background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px' }}>
-                <strong>{hovered.player.player}</strong> — {positionLabel(hovered.player.primary_position)}
-                <br />
-                {hovered.player.did_not_play
-                  ? 'Named to squad, did not play'
-                  : `+/- ${hovered.player.plus_minus} · ${hovered.player.goals}G ${hovered.player.assists}A · ${Math.round(hovered.player.minutes)} min`}
+
+              <div className="card">
+                <div style={{ fontSize: 12, color: 'var(--text-faint)', marginBottom: 8 }}>Top on-pitch contributors</div>
+                <table>
+                  <thead>
+                    <tr><th>Player</th><th>Pos</th><th>+/-</th><th>G</th><th>A</th></tr>
+                  </thead>
+                  <tbody>
+                    {topPerformers.map((p) => (
+                      <tr key={p.player_id}>
+                        <td>{p.player}</td>
+                        <td style={{ color: 'var(--text-dim)' }}>{positionLabel(p.primary_position)}</td>
+                        <td>{p.plus_minus}</td>
+                        <td>{p.goals}</td>
+                        <td>{p.assists}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            )}
-          </div>
-          <div className="card">
-            <PitchView markers={markers} onMarkerHover={setHovered} />
-          </div>
+            </div>
+          </>
+        )}
+
+        <div style={{ marginTop: 14 }}>
+          <InsightList insights={narrative} title={`Why ${team} finished the way they did`} />
         </div>
       </Section>
 
-      <InsightList insights={insights} />
+      <InsightList insights={insights} title="Cross-team insights" />
     </div>
   )
 }

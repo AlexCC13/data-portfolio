@@ -55,7 +55,7 @@ export default function Fifa() {
       </div>
 
       {tab === 'overview' && <OverviewTab meta={meta} teamSummary={teamSummary} />}
-      {tab === 'teams' && <TeamsTab teamSummary={teamSummary} roster={roster} />}
+      {tab === 'teams' && <TeamsTab teamSummary={teamSummary} roster={roster} gkProfiles={gkProfiles} />}
       {tab === 'positions' && <PositionsTab positionProfiles={positionProfiles} />}
       {tab === 'players' && <PlayersTab roster={roster} />}
       {tab === 'depth' && <SquadDepthTab roster={roster} teamSummary={teamSummary} />}

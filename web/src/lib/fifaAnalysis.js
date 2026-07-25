@@ -87,6 +87,92 @@ export function teamInsights(teamSummary) {
   ]
 }
 
+// Percentile rank of `value` among `values`: share of the field this value
+// is at or ahead of. `invert: true` for metrics where lower is better
+// (goals against, cards) so "ahead of" still means "better than".
+export function percentileRank(values, value, invert = false) {
+  const n = values.length
+  if (!n) return 0
+  const beaten = invert ? values.filter((v) => v >= value).length : values.filter((v) => v <= value).length
+  return Math.round((beaten / n) * 100)
+}
+
+export function teamDimensions(teamSummary, team) {
+  const t = teamSummary.find((x) => x.team === team)
+  if (!t) return null
+  const disciplineIndex = t.yellowCards + t.redCards * 3
+  const winRate = t.matchesPlayed ? t.wins / t.matchesPlayed : 0
+  const fieldDiscipline = teamSummary.map((x) => x.yellowCards + x.redCards * 3)
+  const fieldWinRate = teamSummary.map((x) => (x.matchesPlayed ? x.wins / x.matchesPlayed : 0))
+
+  return {
+    team,
+    stats: t,
+    winRate,
+    disciplineIndex,
+    dimensions: [
+      { key: 'attack', label: 'Attack', raw: t.goalsFor, display: `${t.goalsFor} goals`, percentile: percentileRank(teamSummary.map((x) => x.goalsFor), t.goalsFor) },
+      { key: 'defense', label: 'Defense', raw: t.goalsAgainst, display: `${t.goalsAgainst} conceded`, percentile: percentileRank(teamSummary.map((x) => x.goalsAgainst), t.goalsAgainst, true) },
+      { key: 'efficiency', label: 'Shot efficiency', raw: t.shotsOnTargetPct, display: fmtPct(t.shotsOnTargetPct, 1), percentile: percentileRank(teamSummary.map((x) => x.shotsOnTargetPct), t.shotsOnTargetPct) },
+      { key: 'discipline', label: 'Discipline', raw: disciplineIndex, display: `${t.yellowCards}Y/${t.redCards}R`, percentile: percentileRank(fieldDiscipline, disciplineIndex, true) },
+      { key: 'winRate', label: 'Win rate', raw: winRate, display: fmtPct(winRate * 100, 0), percentile: percentileRank(fieldWinRate, winRate) },
+      { key: 'cleanSheets', label: 'Clean sheets', raw: t.cleanSheets, display: `${t.cleanSheets}/${t.matchesPlayed}`, percentile: percentileRank(teamSummary.map((x) => x.cleanSheets), t.cleanSheets) },
+    ],
+  }
+}
+
+export function teamTopPerformers(roster, team, n = 5) {
+  return roster
+    .filter((p) => p.team === team && !p.did_not_play)
+    .sort((a, b) => b.plus_minus - a.plus_minus)
+    .slice(0, n)
+}
+
+export function teamNarrative(teamSummary, roster, gkProfiles, team) {
+  const profile = teamDimensions(teamSummary, team)
+  if (!profile) return []
+  const { stats, winRate, dimensions } = profile
+  const ranked = [...dimensions].sort((a, b) => b.percentile - a.percentile)
+  const strongest = ranked[0]
+  const secondStrongest = ranked[1]
+  const weakest = ranked[ranked.length - 1]
+
+  const avgWinRate = mean(teamSummary.map((t) => (t.matchesPlayed ? t.wins / t.matchesPlayed : 0)))
+  const top = teamTopPerformers(roster, team, 1)[0]
+  const keeper = gkProfiles.filter((g) => g.team === team).sort((a, b) => b.gk_games - a.gk_games)[0]
+
+  const dimensionSentence = (d) => {
+    switch (d.key) {
+      case 'attack': return `their attack (${d.display}, better than ${d.percentile}% of the field)`
+      case 'defense': return `their defense (${d.display}, better than ${d.percentile}% of the field)`
+      case 'efficiency': return `their shot conversion (${d.display} of shots on target, better than ${d.percentile}% of the field)`
+      case 'discipline': return `their discipline (${d.display}, cleaner than ${d.percentile}% of the field)`
+      case 'winRate': return `their results (${d.display} win rate, better than ${d.percentile}% of the field)`
+      case 'cleanSheets': return `their clean-sheet record (${d.display} matches, better than ${d.percentile}% of the field)`
+      default: return ''
+    }
+  }
+
+  const lines = [
+    `${team} finished ${stats.wins}-${stats.draws}-${stats.losses} across ${stats.matchesPlayed} matches (${fmtPct(winRate * 100, 0)} win rate, vs a ${fmtPct(avgWinRate * 100, 0)} tournament average).`,
+    `Their standout dimension was ${dimensionSentence(strongest)}${secondStrongest.percentile >= 70 ? `, closely followed by ${dimensionSentence(secondStrongest)}` : ''}.`,
+  ]
+
+  if (weakest.percentile <= 40 && weakest.key !== strongest.key) {
+    lines.push(`Their most exposed area was ${dimensionSentence(weakest)}.`)
+  }
+
+  if (top) {
+    lines.push(`${top.player} had the biggest on-pitch impact on the team: +/- ${top.plus_minus} across ${top.games} matches (${top.goals}G ${top.assists}A).`)
+  }
+
+  if (keeper && keeper.gk_games >= 2) {
+    lines.push(`${keeper.player} started in goal, posting a ${fmtPct(keeper.gk_save_pct, 1)} save rate and a ${fmtPct(keeper.gk_clean_sheets_pct, 0)} clean-sheet rate across ${keeper.gk_games} games.`)
+  }
+
+  return lines
+}
+
 // ---------------------------------------------------------------------
 // Position archetypes
 // ---------------------------------------------------------------------
@@ -276,44 +362,6 @@ export function gkInsights(gkProfiles) {
     penSavers.length ? `${penSavers[0].player} (${penSavers[0].team}) saved the most penalties (${penSavers[0].gk_pens_saved}).` : `No goalkeeper saved more than one penalty across the tournament.`,
     `Save percentage and clean-sheet rate correlate at r=${r.toFixed(2)} among regular keepers — ${r > 0.5 ? 'shot-stopping ability tracks fairly closely with keeping clean sheets' : 'clean sheets depend on more than shot-stopping alone (defense in front of the keeper matters just as much)'}.`,
   ]
-}
-
-// ---------------------------------------------------------------------
-// Squad pitch view markers
-// ---------------------------------------------------------------------
-const PITCH_BANDS = { GK: 138, DF: 112, MF: 75, FW: 30 }
-
-export function squadPitchMarkers(teamRoster, metricKey = 'plus_minus') {
-  const byPosition = {}
-  teamRoster.forEach((p) => {
-    byPosition[p.primary_position] = byPosition[p.primary_position] || []
-    byPosition[p.primary_position].push(p)
-  })
-
-  const values = teamRoster.map((p) => p[metricKey]).filter((v) => v != null && !Number.isNaN(v))
-  const min = Math.min(...values, 0)
-  const max = Math.max(...values, 1)
-  const norm = (v) => (v == null || Number.isNaN(v) ? 0.5 : max === min ? 0.5 : (v - min) / (max - min))
-
-  const markers = []
-  Object.entries(byPosition).forEach(([code, players]) => {
-    const y = PITCH_BANDS[code] ?? 75
-    const sorted = [...players].sort((a, b) => (a.player > b.player ? 1 : -1))
-    const n = sorted.length
-    sorted.forEach((p, i) => {
-      const x = n === 1 ? 50 : 8 + (84 * i) / (n - 1)
-      const t = norm(p[metricKey])
-      markers.push({
-        id: p.player_id,
-        x,
-        y,
-        r: p.did_not_play ? 1.6 : 2.2 + t * 2.2,
-        color: p.did_not_play ? '#3a4152' : `rgb(${Math.round(91 + t * (248 - 91))}, ${Math.round(140 + t * (113 - 140))}, ${Math.round(255 + t * (113 - 255))})`,
-        player: p,
-      })
-    })
-  })
-  return markers
 }
 
 export function pitchZonesForMetric(positionProfiles, metricKey, formatFn = (v) => v) {
