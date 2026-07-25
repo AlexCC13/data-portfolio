@@ -35,14 +35,15 @@ export default function PlayersTab({ roster }) {
 
   return (
     <div>
-      <Section title="Biggest on-pitch impact" subtitle="Team goal difference while the player was on the field (+/-), min. 3 matches">
+      <Section title="Biggest on-pitch impact" subtitle="Team goal difference per 90 while the player was on the field, min. 3 matches">
         <PlayerTable
           rows={pm}
           columns={[
             { key: 'player', label: 'Player' },
             { key: 'team', label: 'Team' },
             { key: 'primary_position', label: 'Pos', fmt: positionLabel },
-            { key: 'plus_minus', label: '+/-' },
+            { key: 'plus_minus_per90', label: '+/- per90', fmt: (v) => v.toFixed(2) },
+            { key: 'plus_minus', label: '+/- total' },
             { key: 'goals', label: 'G' },
             { key: 'assists', label: 'A' },
           ]}
@@ -63,14 +64,14 @@ export default function PlayersTab({ roster }) {
           />
         </Section>
 
-        <Section title="Defensive workhorses" subtitle="Tackles won + interceptions, outfield players only">
+        <Section title="Defensive workhorses" subtitle="Tackles won + interceptions per 90, min. 3 nineties played">
           <PlayerTable
             rows={workhorses}
             columns={[
               { key: 'player', label: 'Player' },
               { key: 'team', label: 'Team' },
               { key: 'primary_position', label: 'Pos', fmt: positionLabel },
-              { key: 'def_actions', label: 'Def. actions' },
+              { key: 'defActionsPer90', label: 'Def./90', fmt: (v) => v.toFixed(2) },
             ]}
           />
         </Section>

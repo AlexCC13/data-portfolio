@@ -30,17 +30,29 @@ export default function TeamsTab({ teamSummary, roster, gkProfiles }) {
   const profile = useMemo(() => teamDimensions(teamSummary, team), [teamSummary, team])
   const topPerformers = useMemo(() => teamTopPerformers(roster, team), [roster, team])
   const narrative = useMemo(() => teamNarrative(teamSummary, roster, gkProfiles, team), [teamSummary, roster, gkProfiles, team])
+  // Teams played 3-8 matches depending on how far they went, so per-match
+  // rates are what's actually comparable here — raw totals would just
+  // reward teams for advancing further, not for attacking/defending better.
+  const perMatch = useMemo(
+    () => teamSummary.map((t) => ({
+      ...t,
+      goalsForPerMatch: Number((t.goalsFor / t.matchesPlayed).toFixed(2)),
+      goalsAgainstPerMatch: Number((t.goalsAgainst / t.matchesPlayed).toFixed(2)),
+      shotsPerMatch: Number((t.shots / t.matchesPlayed).toFixed(1)),
+    })),
+    [teamSummary]
+  )
 
   return (
     <div>
-      <Section title="Goals for vs. against" subtitle="Every team's attack vs. defense record — bubble size is shots taken">
+      <Section title="Goals for vs. against" subtitle="Every team's attack vs. defense record, per match — bubble size is shots taken per match">
         <div className="card">
           <ResponsiveContainer width="100%" height={380}>
             <ScatterChart margin={{ top: 10, right: 20, bottom: 20, left: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#232939" />
-              <XAxis type="number" dataKey="goalsFor" name="Goals for" stroke="#5a6272" fontSize={11} label={{ value: 'Goals for', position: 'insideBottom', offset: -10, fill: '#5a6272', fontSize: 11 }} />
-              <YAxis type="number" dataKey="goalsAgainst" name="Goals against" stroke="#5a6272" fontSize={11} label={{ value: 'Goals against', angle: -90, position: 'insideLeft', fill: '#5a6272', fontSize: 11 }} />
-              <ZAxis type="number" dataKey="shots" range={[30, 300]} />
+              <XAxis type="number" dataKey="goalsForPerMatch" name="Goals for / match" stroke="#5a6272" fontSize={11} label={{ value: 'Goals for / match', position: 'insideBottom', offset: -10, fill: '#5a6272', fontSize: 11 }} />
+              <YAxis type="number" dataKey="goalsAgainstPerMatch" name="Goals against / match" stroke="#5a6272" fontSize={11} label={{ value: 'Goals against / match', angle: -90, position: 'insideLeft', fill: '#5a6272', fontSize: 11 }} />
+              <ZAxis type="number" dataKey="shotsPerMatch" range={[30, 300]} />
               <Tooltip
                 content={({ active, payload }) => {
                   if (!active || !payload?.length) return null
@@ -48,15 +60,15 @@ export default function TeamsTab({ teamSummary, roster, gkProfiles }) {
                   return (
                     <div style={{ background: '#161b26', border: '1px solid #232939', fontSize: 12, padding: 8, borderRadius: 6 }}>
                       <div style={{ fontWeight: 600, marginBottom: 4 }}>{d.team}</div>
-                      <div>{d.wins}W-{d.draws}D-{d.losses}L · {d.goalsFor}-{d.goalsAgainst}</div>
-                      <div>{d.shots} shots, {d.shotsOnTargetPct}% on target</div>
+                      <div>{d.wins}W-{d.draws}D-{d.losses}L · {d.goalsFor}-{d.goalsAgainst} over {d.matchesPlayed} matches</div>
+                      <div>{d.goalsForPerMatch}-{d.goalsAgainstPerMatch} per match · {d.shotsPerMatch} shots/match, {d.shotsOnTargetPct}% on target</div>
                     </div>
                   )
                 }}
               />
-              <Scatter data={teamSummary} fillOpacity={0.75}>
-                {teamSummary.map((t) => (
-                  <Cell key={t.team} fill={t.goalsFor >= t.goalsAgainst ? '#4ade80' : '#f87171'} />
+              <Scatter data={perMatch} fillOpacity={0.75}>
+                {perMatch.map((t) => (
+                  <Cell key={t.team} fill={t.goalsForPerMatch >= t.goalsAgainstPerMatch ? '#4ade80' : '#f87171'} />
                 ))}
               </Scatter>
             </ScatterChart>
@@ -113,17 +125,17 @@ export default function TeamsTab({ teamSummary, roster, gkProfiles }) {
               </div>
 
               <div className="card">
-                <div style={{ fontSize: 12, color: 'var(--text-faint)', marginBottom: 8 }}>Top on-pitch contributors</div>
+                <div style={{ fontSize: 12, color: 'var(--text-faint)', marginBottom: 8 }}>Top on-pitch contributors (+/- per 90, min. 2 matches)</div>
                 <table>
                   <thead>
-                    <tr><th>Player</th><th>Pos</th><th>+/-</th><th>G</th><th>A</th></tr>
+                    <tr><th>Player</th><th>Pos</th><th>+/-/90</th><th>G</th><th>A</th></tr>
                   </thead>
                   <tbody>
                     {topPerformers.map((p) => (
                       <tr key={p.player_id}>
                         <td>{p.player}</td>
                         <td style={{ color: 'var(--text-dim)' }}>{positionLabel(p.primary_position)}</td>
-                        <td>{p.plus_minus}</td>
+                        <td>{p.plus_minus_per90.toFixed(2)}</td>
                         <td>{p.goals}</td>
                         <td>{p.assists}</td>
                       </tr>

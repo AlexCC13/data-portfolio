@@ -43,27 +43,35 @@ export function positionLabel(code) {
 // ---------------------------------------------------------------------
 // Overview
 // ---------------------------------------------------------------------
+// Teams played anywhere from 3 to 8 matches depending on how far they went,
+// so any raw total (goals, cards, shots, clean sheets) mechanically favors
+// teams that played more matches — it's not a fair basis for ranking or
+// correlating across teams. Every team-comparison metric below is a
+// per-match (or already-a-percentage) rate instead.
 export function goalsByTeam(teamSummary, n = 15) {
-  return [...teamSummary].sort((a, b) => b.goalsFor - a.goalsFor).slice(0, n)
+  return [...teamSummary]
+    .map((t) => ({ ...t, goalsPerMatch: Number((t.goalsFor / t.matchesPlayed).toFixed(2)) }))
+    .sort((a, b) => b.goalsPerMatch - a.goalsPerMatch)
+    .slice(0, n)
 }
 
 export function disciplineByTeam(teamSummary, n = 15) {
   return [...teamSummary]
-    .map((t) => ({ ...t, cardIndex: t.yellowCards + t.redCards * 3 }))
-    .sort((a, b) => b.cardIndex - a.cardIndex)
+    .map((t) => ({ ...t, cardIndexPerMatch: Number(((t.yellowCards + t.redCards * 3) / t.matchesPlayed).toFixed(2)) }))
+    .sort((a, b) => b.cardIndexPerMatch - a.cardIndexPerMatch)
     .slice(0, n)
 }
 
 export function overviewInsights(teamSummary, meta) {
-  const topScoring = [...teamSummary].sort((a, b) => b.goalsFor - a.goalsFor)[0]
+  const topScoring = [...teamSummary].sort((a, b) => b.goalsFor / b.matchesPlayed - a.goalsFor / a.matchesPlayed)[0]
   const tightest = [...teamSummary].filter((t) => t.matchesPlayed >= 4).sort((a, b) => a.goalsAgainst / a.matchesPlayed - b.goalsAgainst / b.matchesPlayed)[0]
-  const mostCleanSheets = [...teamSummary].sort((a, b) => b.cleanSheets - a.cleanSheets)[0]
+  const mostCleanSheets = [...teamSummary].sort((a, b) => b.cleanSheets / b.matchesPlayed - a.cleanSheets / a.matchesPlayed)[0]
   const avgSquadUsage = mean(teamSummary.map((t) => t.playersUsed / t.squadSize))
 
   return [
-    `${topScoring.team} scored the most goals of any squad (${topScoring.goalsFor}) across ${topScoring.matchesPlayed} matches.`,
+    `${topScoring.team} had the best scoring rate of any squad — ${(topScoring.goalsFor / topScoring.matchesPlayed).toFixed(2)} goals per match across ${topScoring.matchesPlayed} games.`,
     `${tightest.team} had the tightest defense — just ${(tightest.goalsAgainst / tightest.matchesPlayed).toFixed(2)} goals conceded per match over ${tightest.matchesPlayed} games.`,
-    `${mostCleanSheets.team} kept the most clean sheets (${mostCleanSheets.cleanSheets}).`,
+    `${mostCleanSheets.team} kept a clean sheet in ${fmtPct((mostCleanSheets.cleanSheets / mostCleanSheets.matchesPlayed) * 100, 0)} of their matches (${mostCleanSheets.cleanSheets}/${mostCleanSheets.matchesPlayed}), the best rate of any team.`,
     `On average, teams used ${fmtPct(avgSquadUsage * 100, 0)} of their 26-man squad — the rest never left the bench across the tournament.`,
     `${meta.totalGoals} goals from named goalscorers plus ${meta.totalOwnGoals} own goals gives the tournament's real total of ${meta.totalGoals + meta.totalOwnGoals}.`,
   ]
@@ -73,17 +81,17 @@ export function overviewInsights(teamSummary, meta) {
 // Team analysis
 // ---------------------------------------------------------------------
 export function teamInsights(teamSummary) {
-  const byDiff = teamSummary.map((t) => ({ ...t, goalDiff: t.goalsFor - t.goalsAgainst }))
-  const bestDiff = [...byDiff].sort((a, b) => b.goalDiff - a.goalDiff)[0]
+  const byDiff = teamSummary.map((t) => ({ ...t, goalDiffPerMatch: (t.goalsFor - t.goalsAgainst) / t.matchesPlayed }))
+  const bestDiff = [...byDiff].sort((a, b) => b.goalDiffPerMatch - a.goalDiffPerMatch)[0]
   const bestWinRate = [...teamSummary].filter((t) => t.matchesPlayed >= 4).sort((a, b) => b.wins / b.matchesPlayed - a.wins / a.matchesPlayed)[0]
   const bestAccuracy = [...teamSummary].sort((a, b) => b.shotsOnTargetPct - a.shotsOnTargetPct)[0]
-  const r = correlation(teamSummary.map((t) => [t.shots, t.goalsFor]))
+  const r = correlation(teamSummary.map((t) => [t.shots / t.matchesPlayed, t.goalsFor / t.matchesPlayed]))
 
   return [
-    `${bestDiff.team} posted the best goal difference in the tournament (${bestDiff.goalDiff >= 0 ? '+' : ''}${bestDiff.goalDiff}: ${bestDiff.goalsFor} for, ${bestDiff.goalsAgainst} against).`,
+    `${bestDiff.team} posted the best goal difference per match in the tournament (${bestDiff.goalDiffPerMatch >= 0 ? '+' : ''}${bestDiff.goalDiffPerMatch.toFixed(2)}/match: ${bestDiff.goalsFor} for, ${bestDiff.goalsAgainst} against over ${bestDiff.matchesPlayed} games).`,
     `${bestWinRate.team} had the best win rate among teams with 4+ matches — ${bestWinRate.wins} wins from ${bestWinRate.matchesPlayed} games (${fmtPct((bestWinRate.wins / bestWinRate.matchesPlayed) * 100, 0)}).`,
     `${bestAccuracy.team} were the most clinical with their shots on target, landing ${fmtPct(bestAccuracy.shotsOnTargetPct, 1)} of attempts on frame.`,
-    `Shot volume and goals scored correlate at r=${r.toFixed(2)} across all 48 teams — ${r > 0.6 ? 'teams that shot more generally scored more, as expected' : 'shot volume alone is a moderate predictor of goals — quality of chances matters too'}.`,
+    `Shots and goals per match correlate at r=${r.toFixed(2)} across all 48 teams — ${r > 0.6 ? 'teams that shot more generally scored more, as expected' : 'shot volume alone is a moderate predictor of goals — quality of chances matters too'}.`,
   ]
 }
 
@@ -100,31 +108,43 @@ export function percentileRank(values, value, invert = false) {
 export function teamDimensions(teamSummary, team) {
   const t = teamSummary.find((x) => x.team === team)
   if (!t) return null
-  const disciplineIndex = t.yellowCards + t.redCards * 3
+  // Teams played 3-8 matches depending on how far they went, so every
+  // dimension here is a per-match rate — comparing raw totals would just
+  // reward playing more games, not playing better.
+  const goalsPerMatch = t.goalsFor / t.matchesPlayed
+  const concededPerMatch = t.goalsAgainst / t.matchesPlayed
+  const cardsPerMatch = (t.yellowCards + t.redCards * 3) / t.matchesPlayed
+  const cleanSheetRate = t.cleanSheets / t.matchesPlayed
   const winRate = t.matchesPlayed ? t.wins / t.matchesPlayed : 0
-  const fieldDiscipline = teamSummary.map((x) => x.yellowCards + x.redCards * 3)
+
+  const fieldGoalsPerMatch = teamSummary.map((x) => x.goalsFor / x.matchesPlayed)
+  const fieldConcededPerMatch = teamSummary.map((x) => x.goalsAgainst / x.matchesPlayed)
+  const fieldCardsPerMatch = teamSummary.map((x) => (x.yellowCards + x.redCards * 3) / x.matchesPlayed)
+  const fieldCleanSheetRate = teamSummary.map((x) => x.cleanSheets / x.matchesPlayed)
   const fieldWinRate = teamSummary.map((x) => (x.matchesPlayed ? x.wins / x.matchesPlayed : 0))
 
   return {
     team,
     stats: t,
     winRate,
-    disciplineIndex,
+    cardsPerMatch,
     dimensions: [
-      { key: 'attack', label: 'Attack', raw: t.goalsFor, display: `${t.goalsFor} goals`, percentile: percentileRank(teamSummary.map((x) => x.goalsFor), t.goalsFor) },
-      { key: 'defense', label: 'Defense', raw: t.goalsAgainst, display: `${t.goalsAgainst} conceded`, percentile: percentileRank(teamSummary.map((x) => x.goalsAgainst), t.goalsAgainst, true) },
+      { key: 'attack', label: 'Attack', raw: goalsPerMatch, display: `${goalsPerMatch.toFixed(2)}/match`, percentile: percentileRank(fieldGoalsPerMatch, goalsPerMatch) },
+      { key: 'defense', label: 'Defense', raw: concededPerMatch, display: `${concededPerMatch.toFixed(2)}/match`, percentile: percentileRank(fieldConcededPerMatch, concededPerMatch, true) },
       { key: 'efficiency', label: 'Shot efficiency', raw: t.shotsOnTargetPct, display: fmtPct(t.shotsOnTargetPct, 1), percentile: percentileRank(teamSummary.map((x) => x.shotsOnTargetPct), t.shotsOnTargetPct) },
-      { key: 'discipline', label: 'Discipline', raw: disciplineIndex, display: `${t.yellowCards}Y/${t.redCards}R`, percentile: percentileRank(fieldDiscipline, disciplineIndex, true) },
+      { key: 'discipline', label: 'Discipline', raw: cardsPerMatch, display: `${cardsPerMatch.toFixed(2)} cards/match`, percentile: percentileRank(fieldCardsPerMatch, cardsPerMatch, true) },
       { key: 'winRate', label: 'Win rate', raw: winRate, display: fmtPct(winRate * 100, 0), percentile: percentileRank(fieldWinRate, winRate) },
-      { key: 'cleanSheets', label: 'Clean sheets', raw: t.cleanSheets, display: `${t.cleanSheets}/${t.matchesPlayed}`, percentile: percentileRank(teamSummary.map((x) => x.cleanSheets), t.cleanSheets) },
+      { key: 'cleanSheets', label: 'Clean sheets', raw: cleanSheetRate, display: fmtPct(cleanSheetRate * 100, 0), percentile: percentileRank(fieldCleanSheetRate, cleanSheetRate) },
     ],
   }
 }
 
-export function teamTopPerformers(roster, team, n = 5) {
+// Ranked by per-90 impact rather than raw plus_minus, and requires 2+
+// matches, so a single-substitute cameo can't outrank genuine contributors.
+export function teamTopPerformers(roster, team, minGames = 2, n = 5) {
   return roster
-    .filter((p) => p.team === team && !p.did_not_play)
-    .sort((a, b) => b.plus_minus - a.plus_minus)
+    .filter((p) => p.team === team && !p.did_not_play && p.games >= minGames)
+    .sort((a, b) => b.plus_minus_per90 - a.plus_minus_per90)
     .slice(0, n)
 }
 
@@ -138,7 +158,7 @@ export function teamNarrative(teamSummary, roster, gkProfiles, team) {
   const weakest = ranked[ranked.length - 1]
 
   const avgWinRate = mean(teamSummary.map((t) => (t.matchesPlayed ? t.wins / t.matchesPlayed : 0)))
-  const top = teamTopPerformers(roster, team, 1)[0]
+  const top = teamTopPerformers(roster, team, 2, 1)[0]
   const keeper = gkProfiles.filter((g) => g.team === team).sort((a, b) => b.gk_games - a.gk_games)[0]
 
   const dimensionSentence = (d) => {
@@ -148,7 +168,7 @@ export function teamNarrative(teamSummary, roster, gkProfiles, team) {
       case 'efficiency': return `their shot conversion (${d.display} of shots on target, better than ${d.percentile}% of the field)`
       case 'discipline': return `their discipline (${d.display}, cleaner than ${d.percentile}% of the field)`
       case 'winRate': return `their results (${d.display} win rate, better than ${d.percentile}% of the field)`
-      case 'cleanSheets': return `their clean-sheet record (${d.display} matches, better than ${d.percentile}% of the field)`
+      case 'cleanSheets': return `their clean-sheet rate (${d.display} of matches, better than ${d.percentile}% of the field)`
       default: return ''
     }
   }
@@ -163,7 +183,7 @@ export function teamNarrative(teamSummary, roster, gkProfiles, team) {
   }
 
   if (top) {
-    lines.push(`${top.player} had the biggest on-pitch impact on the team: +/- ${top.plus_minus} across ${top.games} matches (${top.goals}G ${top.assists}A).`)
+    lines.push(`${top.player} had the biggest per-90 impact on the team: ${top.plus_minus_per90 >= 0 ? '+' : ''}${top.plus_minus_per90.toFixed(2)} per 90 (${top.plus_minus >= 0 ? '+' : ''}${top.plus_minus} total across ${top.games} matches, ${top.goals}G ${top.assists}A).`)
   }
 
   if (keeper && keeper.gk_games >= 2) {
@@ -227,10 +247,13 @@ export function positionInsights(positionProfiles) {
 // Player scouting — deliberately skips raw top-scorer/top-assist tables
 // (already well covered by mainstream World Cup coverage).
 // ---------------------------------------------------------------------
+// Raw plus_minus accumulates with more minutes played, so a player with 8
+// matches has a structural edge over one with 3 regardless of quality —
+// ranked by the per-90 rate instead, with the raw total kept for context.
 export function plusMinusLeaders(roster, minGames = 3, n = 10) {
   return roster
     .filter((p) => !p.did_not_play && p.games >= minGames)
-    .sort((a, b) => b.plus_minus - a.plus_minus)
+    .sort((a, b) => b.plus_minus_per90 - a.plus_minus_per90)
     .slice(0, n)
 }
 
@@ -241,10 +264,14 @@ export function conversionLeaders(roster, minShots = 8, n = 10) {
     .slice(0, n)
 }
 
-export function defensiveWorkhorses(roster, n = 10) {
+// Raw def_actions favors players who simply played more minutes, so this
+// ranks by the per-90 rate instead (already computed per player in
+// clean_fifa.py) with a minimum-minutes floor to keep small samples out.
+export function defensiveWorkhorses(roster, minMinutes90 = 3, n = 10) {
   return roster
-    .filter((p) => !p.did_not_play && p.primary_position !== 'GK')
-    .sort((a, b) => b.def_actions - a.def_actions)
+    .filter((p) => !p.did_not_play && p.primary_position !== 'GK' && p.minutes_90s >= minMinutes90)
+    .map((p) => ({ ...p, defActionsPer90: p.tackles_won_per90 + p.interceptions_per90 }))
+    .sort((a, b) => b.defActionsPer90 - a.defActionsPer90)
     .slice(0, n)
 }
 
@@ -294,7 +321,7 @@ export function playerInsights(roster) {
   const impact = impactSubs(roster)[0]
 
   return [
-    pm ? `${pm.player} (${pm.team}) had the single biggest on-pitch impact — their team was ${pm.plus_minus >= 0 ? '+' : ''}${pm.plus_minus} goals better off while they played, more than any other outfield player.` : null,
+    pm ? `${pm.player} (${pm.team}) had the biggest per-90 on-pitch impact — their team was ${pm.plus_minus_per90 >= 0 ? '+' : ''}${pm.plus_minus_per90.toFixed(2)} goals better off per 90 minutes with them on, ahead of any other outfield player (${pm.plus_minus >= 0 ? '+' : ''}${pm.plus_minus} total across ${pm.games} matches).` : null,
     conv ? `${conv.player} (${conv.team}) was the most clinical finisher, converting ${fmtPct(conv.goals_per_shot * 100, 0)} of shots into goals (min. 8 shots).` : null,
     iron ? `${iron.player} (${iron.team}) played the most minutes of the tournament: ${Math.round(iron.minutes).toLocaleString()} across ${iron.games} matches, starting every one of them.` : null,
     impact ? `${impact.player} (${impact.team}) was the tournament's best "super-sub" — ${impact.goals_assists} goal contributions in just ${impact.games_subs} substitute appearances, never starting a match.` : null,
