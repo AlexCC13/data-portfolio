@@ -12,23 +12,30 @@ visualized end to end. One React/Vite app, one GitHub Pages site, one page per d
   217 countries across 27 years.
 - **Tech Skill Scarcity Index** — weekly job-posting snapshots tracking how hard 141 tech
   skills are to hire for across AI, data, devops, engineering, product and security roles.
+- **FIFA World Cup 2026 — Player Performance** — real tournament data (verified against live
+  reporting), six deep-dive tabs beyond results/top-scorer tables, plus a football-pitch
+  visual for squad and position views.
 
 ## Structure
 
 ```
-assets/                       raw Kaggle CSVs, one subfolder per dataset
+assets/                       raw source files, one subfolder per dataset
 scripts/
   clean_rankings.py           cleans the country-rankings CSV
   clean_skills.py             cleans the tech-skills CSV
+  clean_fifa.py                cleans the FIFA player-stats CSV
 web/                           React + Vite app
   src/pages/                  one page per dataset (Home lists all of them)
-  src/components/             shared chart/UI components
+    fifa/                     one tab component per FIFA dashboard view
+  src/components/             shared chart/UI components (incl. PitchView, InsightList)
   src/lib/
     rankingsAnalysis.js       aggregation helpers for the rankings dataset
     skillsAnalysis.js         aggregation helpers for the skills dataset
+    fifaAnalysis.js           aggregation + insight-sentence helpers for the FIFA dataset
   src/data/
     rankings/                 cleaned JSON for the rankings dataset (generated)
     skills/                   cleaned JSON for the skills dataset (generated)
+    fifa/                     cleaned JSON for the FIFA dataset (generated)
 ```
 
 Each dataset's page is lazy-loaded (`React.lazy`), so visiting the Home page or one
@@ -54,6 +61,7 @@ the full combination of fields, not a single column — see `skillKey()` in
 ```bash
 python3 scripts/clean_rankings.py
 python3 scripts/clean_skills.py
+python3 scripts/clean_fifa.py
 cd web
 npm install
 npm run dev

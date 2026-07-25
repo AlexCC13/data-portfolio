@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx'
 
 const CountryRankings = lazy(() => import('./pages/CountryRankings.jsx'))
 const SkillScarcity = lazy(() => import('./pages/SkillScarcity.jsx'))
+const Fifa = lazy(() => import('./pages/Fifa.jsx'))
 
 function PageFallback() {
   return (
@@ -35,6 +36,14 @@ createRoot(document.getElementById('root')).render(
             element={
               <Suspense fallback={<PageFallback />}>
                 <SkillScarcity />
+              </Suspense>
+            }
+          />
+          <Route
+            path="fifa-world-cup"
+            element={
+              <Suspense fallback={<PageFallback />}>
+                <Fifa />
               </Suspense>
             }
           />

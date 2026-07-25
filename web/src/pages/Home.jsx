@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import rankingsMeta from '../data/rankings/meta.json'
 import skillsMeta from '../data/skills/meta.json'
+import fifaMeta from '../data/fifa/meta.json'
 
 const projects = [
   {
@@ -26,6 +27,18 @@ const projects = [
       `${skillsMeta.rowCount.toLocaleString()} rows`,
     ],
     tags: ['Kaggle', 'Labor market', 'Job postings'],
+  },
+  {
+    to: '/fifa-world-cup',
+    title: 'FIFA World Cup 2026 — Player Performance',
+    description:
+      'Real tournament data, verified against live reporting. A six-tab deep dive beyond the obvious results and top-scorer tables: team economics, position archetypes, scouting angles, squad rotation, and a dedicated goalkeeper breakdown — with a football-pitch visual for squad and position views.',
+    stats: [
+      `${fifaMeta.playersFeatured.toLocaleString()} players featured`,
+      `${fifaMeta.teams.length} teams`,
+      `${fifaMeta.totalGoals + fifaMeta.totalOwnGoals} goals`,
+    ],
+    tags: ['Kaggle', 'Sports analytics', 'Player scouting'],
   },
 ]
 
