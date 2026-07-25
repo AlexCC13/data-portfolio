@@ -327,7 +327,7 @@ export function playerInsights(roster) {
   const impact = impactSubs(roster)[0]
 
   return [
-    pm ? `${pm.player} (${pm.team}) had the biggest per-90 on-pitch impact — their team was ${pm.plus_minus_per90 >= 0 ? '+' : ''}${pm.plus_minus_per90.toFixed(2)} goals better off per 90 minutes with them on, ahead of any other outfield player (${pm.plus_minus >= 0 ? '+' : ''}${pm.plus_minus} total across ${pm.games} matches).` : null,
+    pm ? `${pm.player} (${pm.team}) had the biggest per-90 on-pitch impact — his team was ${pm.plus_minus_per90 >= 0 ? '+' : ''}${pm.plus_minus_per90.toFixed(2)} goals better off per 90 minutes with him on, ahead of any other outfield player (${pm.plus_minus >= 0 ? '+' : ''}${pm.plus_minus} total across ${pm.games} matches).` : null,
     conv ? `${conv.player} (${conv.team}) was the most clinical finisher, converting ${fmtPct(conv.goals_per_shot * 100, 0)} of shots into goals (min. 8 shots).` : null,
     iron ? `${iron.player} (${iron.team}) played the most minutes of the tournament: ${Math.round(iron.minutes).toLocaleString()} across ${iron.games} matches, starting every one of them.` : null,
     impact ? `${impact.player} (${impact.team}) was the tournament's best "super-sub" — ${impact.goals_assists} goal contributions in just ${impact.games_subs} substitute appearances, never starting a match.` : null,
